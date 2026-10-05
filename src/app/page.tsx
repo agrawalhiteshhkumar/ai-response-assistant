@@ -13,15 +13,21 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           {/* Logo & Brand Identity */}
           <div className="flex items-center gap-3 w-full sm:w-auto">
-            <img
-              src="/logo.png"
-              alt="Bright Path"
-              className="w-10 h-10 object-contain rounded-xl shadow-sm border border-slate-100 bg-white shrink-0"
-              onError={(e) => {
-                // Graceful fallback if logo is loading or named differently
-                e.currentTarget.style.display = "none";
-              }}
-            />
+            <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center overflow-hidden shrink-0">
+              <img
+                src="/brightpath-logo.png"
+                alt="Bright Path"
+                className="w-full h-full object-contain p-0.5"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const fallback = e.currentTarget.parentElement?.querySelector(".fallback-monogram");
+                  if (fallback) (fallback as HTMLElement).style.display = "flex";
+                }}
+              />
+              <div className="fallback-monogram hidden w-full h-full bg-gradient-to-tr from-amber-500 to-indigo-600 text-white font-extrabold text-sm items-center justify-center">
+                BP
+              </div>
+            </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="font-black text-lg tracking-tight bg-gradient-to-r from-indigo-700 via-indigo-600 to-amber-600 bg-clip-text text-transparent">
